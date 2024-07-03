@@ -2,8 +2,9 @@ const express=require('express')
 const cors= require('cors')
 const dotenv=require('dotenv')
 const UserRouter=require('./routes/user')
+const OrganiserRouter=require('./routes/organiser')
 const mongooseConnect=require('./connect')
-const { errorMiddleWear } = require('./error')
+const { errorMiddleWare } = require('./error')
 const app=express()
 dotenv.config({path: './config.env'})
 
@@ -22,8 +23,9 @@ app.use(express.urlencoded({extended:true}))
 //routes
 
 app.use('/user',UserRouter)
+app.use('/organiser',OrganiserRouter)
 
 //mongoose connection
 mongooseConnect()
-app.use(errorMiddleWear)
+app.use(errorMiddleWare)
 app.listen(process.env.PORT,()=>{console.log("server started at port ",process.env.PORT)})

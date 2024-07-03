@@ -5,7 +5,7 @@ class errorHandler extends Error{
     }
 }
 
-const errorMiddleWear=(err,req,res,next)=>{
+const errorMiddleWare=(err,req,res,next)=>{
     err.message=err.message||"Internal server error!";
     err.statuscode=err.statuscode||500
     return res.status(err.statuscode).json({
@@ -16,5 +16,5 @@ const errorMiddleWear=(err,req,res,next)=>{
 
 module.exports={
     errorHandler,
-    errorMiddleWear
+    errorMiddleWare
 }
