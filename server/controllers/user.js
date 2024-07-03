@@ -2,7 +2,9 @@ const { errorHandler } = require('../error')
 const bcrypt = require('bcryptjs');
 const USER= require('../models/user')
 async function HandleUserSignUp(req,res,next){
-    const {name,email,phone,dateOfBirth,password}=req.body
+    console.log('in signin backend')
+    const {Name,email,phone,dateOfBirth,password}=req.body
+    const name=Name
     if(!name||!email||!phone||!dateOfBirth||!password){
         return next(new errorHandler("Please fill all the details!", 400))
     }
