@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+
 import styles from "./styles.module.css";
-import { Toaster } from "react-hot-toast";
+
 
 const Signup = () => {
   const [data, setData] = useState({

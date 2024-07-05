@@ -2,7 +2,8 @@ import "./App.css";
 import Login from "./pages/login_user/LoginUser";
 import Signup from "./pages/signup_user/SignupUser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home_user from "./pages/Home_user";
+import Homeuser from "./pages/Home_user";
+import Card from "./components/Card";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home_user" element={<Home_user/>}/>
+          <Route path="/home_user" element={<Homeuser/>}/>
         </Routes>
       </BrowserRouter>
     </div>
