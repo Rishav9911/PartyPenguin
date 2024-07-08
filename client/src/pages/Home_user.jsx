@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Home_user() {
+export default function Homeuser() {
   return (
     <div>
        Home page
