@@ -1,16 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
 import styles from "./styles.module.css";
-
 
 const Signup = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
     phone: "",
-    dateOfBirth: "",
+    organisationName: "",
+    yourRole:"",
     password: "",
   });
   const [error,setError]=useState("")
@@ -24,14 +23,15 @@ const Signup = () => {
     e.preventDefault();
     try {
       console.log("hihihi");
-      let Name = data.name;
+      let name = data.name;
       let email = data.email;
       let phone = data.phone;
-      let dateOfBirth = data.dateOfBirth;
+      let organisationName = data.organisationName;
+      let yourRole=data.yourRole;
       let password = data.password;
       const  result = await axios.post(
-        "http://localhost:5000/user/signup",
-        { Name, email, phone, dateOfBirth, password },
+        "http://localhost:5000/organiser/signup",
+        { name, email, phone, organisationName,yourRole, password },
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,10 +45,11 @@ const Signup = () => {
         name: "",
         email: "",
         phone: "",
-        dateOfBirth: "",
+        organisationName: "",
+        yourRole:"",
         password: "",
       });
-      navigate("/userlogin");
+      navigate("/organiserlogin");
     } catch (error) {
 		if (
 			error.response &&
@@ -65,7 +66,7 @@ const Signup = () => {
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
           <h1>Welcome Back</h1>
-          <Link to="/userlogin">
+          <Link to="/organiserlogin">
             <button type="button" className={styles.white_btn}>
               Sign in
             </button>
@@ -104,11 +105,20 @@ const Signup = () => {
               className={styles.input}
             />
             <input
-              type="Date"
-              placeholder="Date of Birth"
-              name="dateOfBirth"
+              type="text"
+              placeholder="Organisation Name"
+              name="organisationName"
               onChange={handleChange}
-              value={data.dateOfBirth}
+              value={data.organisationName}
+              required
+              className={styles.input}
+            />
+               <input
+              type="text"
+              placeholder="Your Role"
+              name="yourRole"
+              onChange={handleChange}
+              value={data.yourRole}
               required
               className={styles.input}
             />

@@ -14,7 +14,7 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:5000/user/login";
+			const url = "http://localhost:5000/organiser/login";
 			const { result } = await axios.post(url, data, {
 				headers: {
 				  "Content-Type": "application/json",
@@ -66,11 +66,7 @@ const Login = () => {
 				</div>
 				<div className={styles.right}>
 					<h1>New Here ?</h1>
-
-					<Link to="/">
-
-					<Link to="/usersignup">
-
+					<Link to="/organisersignup">
 						<button type="button" className={styles.white_btn}>
 							Sign Up
 						</button>
