@@ -6,7 +6,7 @@ async function HandleOrganiserSignUp(req,res,next){
 
     const {name,email,phone,organisationName,yourRole,password}=req.body
 
-    if(!name||!email||!phone||!organisationName || !yourRole||!password){
+    if(!name||!email||!phone||!organisationName || !yourRole ||!password){
         return next(new errorHandler("Please fill all the details!", 400))
     }
     const result_email=await ORGANISER.findOne({email:email})
