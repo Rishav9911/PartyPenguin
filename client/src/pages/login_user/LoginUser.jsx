@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const Login = () => {
@@ -66,9 +66,6 @@ const Login = () => {
 				</div>
 				<div className={styles.right}>
 					<h1>New Here ?</h1>
-
-					<Link to="/">
-
 					<Link to="/usersignup">
 
 						<button type="button" className={styles.white_btn}>

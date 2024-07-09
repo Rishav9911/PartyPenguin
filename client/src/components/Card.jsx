@@ -3,55 +3,90 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
-import 'swiper/css/navigation'
-
-import { FreeMode, Keyboard, Pagination} from "swiper/modules";
-
-import { RxArrowTopRight } from "react-icons/rx";
-import { ServiceData } from "./constants";
+import "swiper/css/navigation";
+import img from "./bassi.avif";
+import {Navigation } from "swiper/modules";
 
 const ActiveSlider = () => {
   return (
-    <div className="flex items-center justify-center flex-col h-[900px] bg-[#6c34af] hi">
+    <div className="w-full h-[20vh] md:h-[40vh]">
       <Swiper
+        modules={[Navigation]}
+        spaceBetween={10}
+        slidesPerView={1}
+        navigation
         breakpoints={{
-          460: {
+          640: {
             slidesPerView: 2,
-            spaceBetween: 15,
+            spaceBetween: 20,
           },
-          700: {
+          768: {
             slidesPerView: 3,
-            spaceBetween: 15,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-         keyboard={{
-            enabled:true,
-            
-         }}
-        modules={[FreeMode, Pagination,Keyboard]}
-        className="max-w-[90%] lg:max-w-[80%] ml:2px"
+        className="h-full"
       >
-        {ServiceData.map((item) => (
-          <SwiperSlide key={item.title}>
-            <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${item.backgroundImage})` }}
-              />
-              <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
-              <div className="relative flex flex-col gap-3">
-                <item.icon className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
-                <h1 className="text-xl lg:text-2xl">{item.title} </h1>
-                <p className="lg:text-[18px]">{item.content} </p>
-              </div>
-              <RxArrowTopRight className="absolute bottom-5 left-5 w-[35px] h-[35px] text-white group-hover:text-blue-500 group-hover:rotate-45 duration-100" />
-            </div>
-          </SwiperSlide>
-        ))}
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 1"
+            className="object-cover w-full h-20vh rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 2"
+            className="object-cover w-full h-20vh rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 3"
+            className="object-cover w-full h- rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 4"
+            className="object-cover w-full h- rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 5"
+            className="object-cover w-full h-20vh rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 6"
+            className="object-cover w-full h-20vh rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 7"
+            className="object-cover w-full h- rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={img}
+            alt="Slide 8"
+            className="object-cover w-full h- rounded-lg"
+          />
+        </SwiperSlide>
       </Swiper>
     </div>
   );

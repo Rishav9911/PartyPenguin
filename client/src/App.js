@@ -5,10 +5,7 @@ import OSignup from "./pages/SignUpOrganiser/SignUpOrganiser";
 import OLogin from "./pages/LoginOrganiser/LoginOrganiser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Homeuser from "./pages/Home_user";
-import Card from "./components/Card";
-
-import Home_user from "./pages/Home_user";
+import Homeuser from "./pages/Home/HomeUser";
 import Landing from "./pages/Landing/Landing";
 import Navbar from "./pages/Navbar/Navbar";
 
@@ -19,18 +16,12 @@ function App() {
       <BrowserRouter>
       <Navbar />
         <Routes>
-
-          <Route path="/" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home_user" element={<Homeuser/>}/>
-
-        <Route path='/' element={<Landing />} />
+          <Route path='/' element={<Landing />}/>
           <Route path="/usersignup" element={<Signup />} />
           <Route path="/organisersignup" element={<OSignup />} />
           <Route path="/userlogin" element={<Login />} />
           <Route path="/organiserlogin" element={<OLogin />} />
-          <Route path="/home_user" element={<Home_user/>}/>
-
+          <Route path="/home_user" element={<Homeuser/>}/>
         </Routes>
       </BrowserRouter>
     </div>
