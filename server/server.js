@@ -3,6 +3,7 @@ const cors= require('cors')
 const dotenv=require('dotenv')
 const UserRouter=require('./routes/user')
 const OrganiserRouter=require('./routes/organiser')
+const EventRouter=require('./routes/event')
 const mongooseConnect=require('./connect')
 const { errorMiddleWare } = require('./error')
 const app=express()
@@ -24,6 +25,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/user',UserRouter)
 app.use('/organiser',OrganiserRouter)
+app.use('/event',EventRouter)
 
 //mongoose connection
 mongooseConnect()
