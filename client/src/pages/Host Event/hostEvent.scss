@@ -1,0 +1,88 @@
+// Variables
+$primary-color: #4caf50;
+$secondary-color: #f9f9f9;
+$error-color: #f44336;
+$font-family: 'Arial', sans-serif;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin input-style {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@mixin button-style {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Styling
+body {
+  font-family: $font-family;
+  background-color: $secondary-color;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include flex-center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+h1 {
+  color: $primary-color;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+
+  div {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      @include input-style;
+    }
+  }
+
+  button {
+    @include button-style;
+    width: 100%;
+  }
+}
+
+p {
+  color: $error-color;
+  margin-top: 1rem;
+}

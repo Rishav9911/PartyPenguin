@@ -66,17 +66,18 @@ const eventSchema = new mongoose.Schema({
         required: [true, "Ticket Types are required"]
     },
     ticketPrices: {
-        type: [Number], 
+        type: [String], 
         required: [true, "Ticket Prices corresponding to ticket types are required"],
         validate: {
             validator: function(v) {
                 return this.ticketTypes.length === v.length;
             },
-            message: props => `The number of ticket prices (${props.value.length}) does not match the number of ticket types (${this.ticketTypes.length})`
+            message: props => `The  of ticket prices (${props.value.length}) does not match the number of ticket types (${this.ticketTypes.length})`
         }
     },
+
     ticketAvailability: {
-        type: [Number], 
+        type: [String], 
         required: [true, "Ticket Availability is required"],
         validate: {
             validator: function(v) {
