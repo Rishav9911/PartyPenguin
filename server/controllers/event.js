@@ -1,5 +1,4 @@
 const { errorHandler } = require('../error')
-const bcrypt = require('bcryptjs');
 const Event= require('../models/event')
 
 async function HandleEventDetails(req,res,next){
@@ -23,7 +22,14 @@ async function HandleEventDetails(req,res,next){
         return next(error); 
     }
 }
-
+async function HandleGetEvents(req,res,next)
+{
+    const currentDate = new Date();
+    const events = await Event.find({ eventDate: { $gte: currentDate } });
+    //console.log(events);
+    return res.status(200).json({msg:events});
+}
 module.exports={
-    HandleEventDetails
+    HandleEventDetails,
+    HandleGetEvents
 };
