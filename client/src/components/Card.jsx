@@ -5,9 +5,13 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import img from "./bassi.avif";
-import {Navigation } from "swiper/modules";
+import img2 from "../assets/dance.jpg";
+import { Navigation } from "swiper/modules";
 
-const ActiveSlider = () => {
+const ActiveSlider = ({ event }) => {
+  // event.forEach((element) => {
+  //   console.log(element);
+  // });
   return (
     <div className="w-full h-[20vh] md:h-[40vh]">
       <Swiper
@@ -31,13 +35,19 @@ const ActiveSlider = () => {
         }}
         className="h-full"
       >
-        <SwiperSlide>
-          <img
-            src={img}
-            alt="Slide 1"
-            className="object-cover w-full h-20vh rounded-lg"
-          />
-        </SwiperSlide>
+       {event
+        &&event.map((value) => {
+        console.log(value['_id']);
+        return (
+          <SwiperSlide key={value['_id']}>
+            <img
+              src={img2}
+              alt="Slide 1"
+              className="object-cover w-full h-20vh rounded-lg"
+            />
+          </SwiperSlide>
+        );
+      })}
         <SwiperSlide>
           <img
             src={img}

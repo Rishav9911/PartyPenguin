@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const HomeNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   return (
     <nav className="bg-blue-500 shadow-md">
@@ -12,12 +15,12 @@ const HomeNavbar = () => {
           </div>
           <div className="hidden sm:flex sm:items-center sm:ml-6">
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-gray-200">Events</a>
-              <a href="#" className="text-white hover:text-gray-200">Cultural</a>
-              <a href="#" className="text-white hover:text-gray-200">Concerts</a>
+              <HashLink to="#comedy" className="text-white hover:text-gray-200">Comedy</HashLink>
+              <HashLink to="#cultural" className="text-white hover:text-gray-200">Cultural</HashLink>
+              <HashLink to="#concerts" className="text-white hover:text-gray-200">Concerts</HashLink>
               <div className="relative">
                 <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                   className="flex items-center text-white hover:text-gray-200 focus:outline-none"
                 >
                   <img
@@ -26,21 +29,22 @@ const HomeNavbar = () => {
                     alt="Profile"
                   />
                   <svg
-                    className="ml-2 h-5 w-5"
+                    className="ml-2 h-5 w-5 hidden sm:block"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
                     <path
                       fillRule="evenodd"
-                      d="M5.292 7.293a1 1 0 011.415 0L10 10.586l3.293-3.293a1 1 0 111.415 1.415l-4 4a1 1 0 01-1.415 0l-4-4a1 1 0 010-1.415z"
+                      d="M5.292 7.293a1 1 0 011.415 0L10 10.586l3.293-3.293a1 1 111.415 1.415l-4 4a1 1 01-1.415 0l-4-4a1 1 0 010-1.415z"
                       clipRule="evenodd"
                     />
                   </svg>
                 </button>
-                {isMenuOpen && (
+                {isProfileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
                     <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Profile</a>
+                    <Link to="/hostevent" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Host event?</Link>
                     <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Tickets</a>
                     <a href="#" className="block px-4 py-2 text-red-600 hover:bg-gray-100">Sign Out</a>
                   </div>
@@ -78,6 +82,16 @@ const HomeNavbar = () => {
                 )}
               </svg>
             </button>
+            <button
+              onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-200 hover:bg-blue-600 focus:outline-none ml-2"
+            >
+              <img
+                className="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                alt="Profile"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -86,46 +100,26 @@ const HomeNavbar = () => {
       {isMenuOpen && (
         <div className="sm:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="/usersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Events</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Host Event?</a>
+            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Comedy</a>
+            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Cultural</a>
             <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Concerts</a>
-            <div className="relative">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="w-full flex items-center text-white hover:text-gray-200 focus:outline-none"
-              >
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  alt="Profile"
-                />
-                <svg
-                  className="ml-2 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.292 7.293a1 1 0 011.415 0L10 10.586l3.293-3.293a1 1 0 111.415 1.415l-4 4a1 1 0 01-1.415 0l-4-4a1 1 0 010-1.415z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              {isMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
-                  <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Profile</a>
-                  <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Tickets</a>
-                  <a href="#" className="block px-4 py-2 text-red-600 hover:bg-gray-100">Sign Out</a>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       )}
+      <div className="sm:hidden">
+        {isProfileMenuOpen && (
+          <div className="relative">
+            <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
+              <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Profile</a>
+              <Link to="/hostevent" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Host event?</Link>
+              <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Tickets</a>
+              <a href="#" className="block px-4 py-2 text-red-600 hover:bg-gray-100">Sign Out</a>
+            </div>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
 
 export default HomeNavbar;
-
