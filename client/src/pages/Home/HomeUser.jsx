@@ -28,7 +28,7 @@ export default function Homeuser() {
        <div id="comedy" className="p-4"><h1 style={{fontSize:"30px"}}>COMEDY</h1>
        <ActiveSlider event={Events.filter(element=>element.eventCategory==='Comedy')}/></div>
        <div id="cultural" className="p-4"><h1 style={{fontSize:"30px"}}>CULTURAL EVENTS</h1>
-       <ActiveSlider event={Events.filter(element=>element.eventCategory==='cultural')}/></div>
+       <ActiveSlider event={Events.filter(element=>element.eventCategory==='Dance')}/></div>
        
     </div>
   );

@@ -148,8 +148,8 @@ const HostEvent = () => {
                     >
                         <option value="">Select Category</option>
                         <option value="Music">Music</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Conference">Conference</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Dance">Cultural</option>
                     </select>
                 </div>
                 <div>
