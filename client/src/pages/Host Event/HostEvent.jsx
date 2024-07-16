@@ -270,6 +270,8 @@ const HostEvent = () => {
                         value={formData.contactPhone}
                         onChange={handleChange}
                         required
+                        minLength={10}
+                        maxLength={10}
                     />
                 </div>
                 <div>
