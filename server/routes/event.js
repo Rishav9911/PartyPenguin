@@ -6,4 +6,5 @@ const EventRouter=express.Router()
 EventRouter.post('/inputDetails',HandleEventDetails)
 EventRouter.get('/getevents',HandleGetEvents)
 
+
 module.exports=EventRouter

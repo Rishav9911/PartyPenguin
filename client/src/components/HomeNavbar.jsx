@@ -1,23 +1,66 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { toast } from "react-toastify";
 
-const HomeNavbar = () => {
+const HomeNavbar = ({ isUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-
+  const navigate=useNavigate()
+  const handleLogout= async()=>{
+        try {
+          const res=await fetch('http://localhost:5000/logout', {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
+          credentials:'include'
+        }, 
+        )
+          const data= await res.json()
+          toast.success(data['msg'], {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+          console.log('sucess',res)
+          navigate('/')
+        } catch (error) {
+          console.log(error)
+        }
+      
+  }
   return (
     <nav className="bg-blue-500 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="text-lg font-bold text-white">PartyPenguin</a>
+            <a href="#" className="text-lg font-bold text-white">
+              PartyPenguin
+            </a>
           </div>
           <div className="hidden sm:flex sm:items-center sm:ml-6">
             <div className="flex space-x-4">
-              <HashLink to="#comedy" className="text-white hover:text-gray-200">Comedy</HashLink>
-              <HashLink to="#cultural" className="text-white hover:text-gray-200">Cultural</HashLink>
-              <HashLink to="#concerts" className="text-white hover:text-gray-200">Concerts</HashLink>
+              <HashLink to="#comedy" className="text-white hover:text-gray-200">
+                Comedy
+              </HashLink>
+              <HashLink
+                to="#cultural"
+                className="text-white hover:text-gray-200"
+              >
+                Cultural
+              </HashLink>
+              <HashLink
+                to="#concerts"
+                className="text-white hover:text-gray-200"
+              >
+                Concerts
+              </HashLink>
               <div className="relative">
                 <button
                   onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
@@ -43,10 +86,28 @@ const HomeNavbar = () => {
                 </button>
                 {isProfileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
-                    <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Profile</a>
-                    <Link to="/hostevent" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Host event?</Link>
-                    <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Tickets</a>
-                    <a href="#" className="block px-4 py-2 text-red-600 hover:bg-gray-100">Sign Out</a>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                    >
+                      My Profile
+                    </a>
+                    {!isUser && (
+                      <Link
+                        to="/hostevent"
+                        className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                      >
+                        Host event?
+                      </Link>
+                    )}
+
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                    >
+                      My Tickets
+                    </a>
+                    <button onClick={handleLogout} className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Sign Out</button>
                   </div>
                 )}
               </div>
@@ -100,9 +161,24 @@ const HomeNavbar = () => {
       {isMenuOpen && (
         <div className="sm:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Comedy</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Cultural</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600">Concerts</a>
+            <a
+              href="#"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600"
+            >
+              Comedy
+            </a>
+            <a
+              href="#"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600"
+            >
+              Cultural
+            </a>
+            <a
+              href="#"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-blue-600"
+            >
+              Concerts
+            </a>
           </div>
         </div>
       )}
@@ -110,10 +186,27 @@ const HomeNavbar = () => {
         {isProfileMenuOpen && (
           <div className="relative">
             <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
-              <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Profile</a>
-              <Link to="/hostevent" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Host event?</Link>
-              <a href="#" className="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Tickets</a>
-              <a href="#" className="block px-4 py-2 text-red-600 hover:bg-gray-100">Sign Out</a>
+              <a
+                href="#"
+                className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+              >
+                My Profile
+              </a>
+              {!isUser && (
+                <Link
+                  to="/hostevent"
+                  className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                >
+                  Host event?
+                </Link>
+              )}
+              <a
+                href="#"
+                className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+              >
+                My Tickets
+              </a>
+              <button className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Sign Out</button>
             </div>
           </div>
         )}
