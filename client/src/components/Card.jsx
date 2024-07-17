@@ -37,7 +37,6 @@ const ActiveSlider = ({ event }) => {
       >
        {event
         &&event.map((value) => {
-        console.log(value['_id']);
         return (
           <SwiperSlide key={value['_id']}>
             <img
