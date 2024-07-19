@@ -124,6 +124,10 @@ const eventSchema = new mongoose.Schema({
     foodAndBeverage: {
         type: String
     },
+    image:{
+      type: String,
+      required:[true,"Please upload image"],
+    }
 });
 
 

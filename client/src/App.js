@@ -9,7 +9,7 @@ import Landing from "./pages/Landing/Landing";
 import Navbar from "./pages/Navbar/Navbar";
 import HostEvent from "./pages/Host Event/HostEvent";
 import ShowDetails from "./components/ShowDetails";
-
+import OrgDashboard from "./pages/OrganiserDashboard/OrgDashboard";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
           <Route path="/home_user" element={<Homeuser/>}/>
           <Route path="/hostEvent" element={<HostEvent/>}/>
           <Route path="/showdetails" element={<ShowDetails/>}/>
+          <Route path="/dashboard" element={<OrgDashboard/>}/>
         </Routes>
       </BrowserRouter>
     </div>

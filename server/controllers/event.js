@@ -1,5 +1,20 @@
 const { errorHandler } = require("../error");
 const Event = require("../models/event");
+const multer=require("multer");
+
+
+const Storage= multer.diskStorage({
+  destination:"./uploads",
+  filename:(req,file,cb)=>{
+    cb(null,Date.now()+file.originalname);
+  },
+});
+
+const upload=multer({
+  storage:Storage
+}).single("poster")
+
+
 
 async function HandleEventDetails(req, res, next) {
   const {
@@ -23,6 +38,7 @@ async function HandleEventDetails(req, res, next) {
     foodAndBeverage,
   } = req.body;
 
+
   if (
     !eventTitle ||
     !eventDesc ||
@@ -44,6 +60,8 @@ async function HandleEventDetails(req, res, next) {
   }
 
   try {
+    const imagePath = '/uploads/' + req.file.filename;
+
     await Event.create({
       eventTitle,
       eventDesc,
@@ -63,6 +81,7 @@ async function HandleEventDetails(req, res, next) {
       leadArtist,
       ageRestrictions,
       foodAndBeverage,
+      image: imagePath,
     });
     return res
       .status(200)
@@ -77,6 +96,7 @@ async function HandleEventDetails(req, res, next) {
     return next(error);
   }
 }
+
 async function HandleGetEvents(req, res) {
   const currentDate = new Date();
   const events = await Event.find({ eventDate: { $gte: currentDate } });
@@ -94,5 +114,6 @@ async function HandleGetEventDetails(req,res)
 module.exports = {
   HandleEventDetails,
   HandleGetEvents,
-  HandleGetEventDetails
+  HandleGetEventDetails,
+  upload
 };

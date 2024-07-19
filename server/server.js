@@ -11,6 +11,7 @@ const cookieParser = require("cookie-parser");
 const { checkAuthentication } = require("./middlewares/user-auth");
 const app = express();
 dotenv.config({ path: "./config.env" });
+const path = require('path');
 
 //connecting to frontend
 app.use(
@@ -30,7 +31,8 @@ app.use(cookieParser());
 
 app.use("/user", UserRouter);
 app.use("/organiser", OrganiserRouter);
-//app.use(checkAuthentication);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(checkAuthentication);
 app.use("/event", EventRouter);
 app.get("/logout", (req, res) => {
   if (req.cookies.uid!=undefined) res.clearCookie("uid");

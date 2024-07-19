@@ -23,13 +23,22 @@ const HostEvent = () => {
         leadArtist: "",
         ageRestrictions: "",
         foodAndBeverage: "",
+        poster: null,
     });
 
     const [message, setMessage] = useState('');
     const [error, setError] = useState("");
 
+    // const handleChange = ({ currentTarget: input }) => {
+    //     setFormData({ ...formData, [input.name]: input.value });
+    // };
+
     const handleChange = ({ currentTarget: input }) => {
-        setFormData({ ...formData, [input.name]: input.value });
+        if (input.type === "file") {
+            setFormData({ ...formData, [input.name]: input.files[0] });
+        } else {
+            setFormData({ ...formData, [input.name]: input.value });
+        }
     };
 
     const navigate = useNavigate()
@@ -37,6 +46,7 @@ const HostEvent = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+
             let eventTitle = formData.eventTitle;
             let eventDesc = formData.eventDesc;
             let eventCategory = formData.eventCategory;
@@ -55,6 +65,9 @@ const HostEvent = () => {
             let leadArtist = formData.leadArtist;
             let ageRestrictions = formData.ageRestrictions;
             let foodAndBeverage = formData.foodAndBeverage;
+            let poster = formData.poster;
+
+            
 
             const response = await axios.post(
                 "http://localhost:5000/event/inputDetails",
@@ -71,11 +84,12 @@ const HostEvent = () => {
                     contactPhone,
                     leadArtist,
                     ageRestrictions,
-                    foodAndBeverage
+                    foodAndBeverage,
+                    poster
                 },
                 {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                         "Access-Control-Allow-Credentials": true,
                     },
                     withCredentials: true,
@@ -101,6 +115,7 @@ const HostEvent = () => {
                 leadArtist:"",
                 ageRestrictions:"",
                 foodAndBeverage:"",
+                poster: null,
             });
             navigate("/home_user");
         } catch (error) {
@@ -299,6 +314,15 @@ const HostEvent = () => {
                         name="foodAndBeverage"
                         value={formData.foodAndBeverage}
                         onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Poster</label>
+                    <input
+                        type="file"
+                        name="poster"
+                        onChange={handleChange}
+                        required
                     />
                 </div>
                 <button type="submit">Submit</button>
