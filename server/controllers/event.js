@@ -2,6 +2,7 @@ const { errorHandler } = require("../error");
 const Event = require("../models/event");
 const multer=require("multer");
 
+
 const Storage= multer.diskStorage({
   destination:"./uploads",
   filename:(req,file,cb)=>{
@@ -95,6 +96,7 @@ async function HandleEventDetails(req, res, next) {
     return next(error);
   }
 }
+
 async function HandleGetEvents(req, res) {
   const currentDate = new Date();
   const events = await Event.find({ eventDate: { $gte: currentDate } });

@@ -8,6 +8,10 @@ import Homeuser from "./pages/Home/HomeUser";
 import Landing from "./pages/Landing/Landing";
 import Navbar from "./pages/Navbar/Navbar";
 import HostEvent from "./pages/Host Event/HostEvent";
+import OrgDashboard from "./pages/OrganiserDashboard/OrgDashboard";
+
+
+
 
 
 function App() {
@@ -23,6 +27,11 @@ function App() {
           <Route path="/organiserlogin" element={<OLogin />} />
           <Route path="/home_user" element={<Homeuser/>}/>
           <Route path="/hostEvent" element={<HostEvent/>}/>
+          <Route path="/dashboard" element={<OrgDashboard/>}/>
+
+
+
+
 
         </Routes>
       </BrowserRouter>
