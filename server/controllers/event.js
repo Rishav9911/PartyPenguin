@@ -84,7 +84,15 @@ async function HandleGetEvents(req, res) {
   const isUser=req.cookies?.uid;
   return res.status(200).json({ msg: events,isUser:isUser===undefined?false:true });
 }
+async function HandleGetEventDetails(req,res)
+{
+    const id=(req.headers['event-id'])
+    const event=await Event.findById(id);
+    console.log(event)
+    return res.json(event)
+}
 module.exports = {
   HandleEventDetails,
   HandleGetEvents,
+  HandleGetEventDetails
 };

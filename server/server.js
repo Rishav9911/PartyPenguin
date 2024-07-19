@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 app.use("/user", UserRouter);
 app.use("/organiser", OrganiserRouter);
-app.use(checkAuthentication);
+//app.use(checkAuthentication);
 app.use("/event", EventRouter);
 app.get("/logout", (req, res) => {
   if (req.cookies.uid!=undefined) res.clearCookie("uid");

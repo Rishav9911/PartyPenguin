@@ -8,6 +8,7 @@ import Homeuser from "./pages/Home/HomeUser";
 import Landing from "./pages/Landing/Landing";
 import Navbar from "./pages/Navbar/Navbar";
 import HostEvent from "./pages/Host Event/HostEvent";
+import ShowDetails from "./components/ShowDetails";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Route path="/organiserlogin" element={<OLogin />} />
           <Route path="/home_user" element={<Homeuser/>}/>
           <Route path="/hostEvent" element={<HostEvent/>}/>
-
+          <Route path="/showdetails" element={<ShowDetails/>}/>
         </Routes>
       </BrowserRouter>
     </div>
