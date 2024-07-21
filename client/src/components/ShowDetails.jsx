@@ -51,7 +51,7 @@ const ShowDetails = () => {
             {event.image && (
               <img
                 className="object-cover w-3/4 md:w-full"
-                src={img}
+                src={`http://localhost:5000${event.image}`}
                 alt="Show Poster"
               />
             )}
