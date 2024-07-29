@@ -10,15 +10,14 @@ import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 const ActiveSlider = ({ event }) => {
-  // event.forEach((element) => {
-  //   console.log(element);
-  // });
+
   const navigate= useNavigate()
   const HandleClick=(e)=>{
     const key = e.currentTarget.getAttribute('data-key');
     console.log('Clicked show with key:', key);
      navigate('/showdetails',{state:{id:key}})
   }
+
   return (
     <div className="w-full h-[20vh] md:h-[40vh]">
       <Swiper
@@ -47,7 +46,7 @@ const ActiveSlider = ({ event }) => {
         return (
           <SwiperSlide >
             <button data-key={value['_id']} onClick={HandleClick}> <img
-              src={img2}
+            src={`http://localhost:5000${value.image}`}
               alt="Slide 1"
               className="object-cover w-full h-20vh rounded-lg"
             /></button>
@@ -56,7 +55,7 @@ const ActiveSlider = ({ event }) => {
       })}
         <SwiperSlide>
           <img
-            src={img}
+           src={img}
             alt="Slide 2"
             className="object-cover w-full h-20vh rounded-lg"
           />

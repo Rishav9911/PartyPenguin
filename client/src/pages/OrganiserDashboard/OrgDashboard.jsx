@@ -11,7 +11,7 @@ function OrgDashboard() {
 
   const getEvents = async () => {
     try {
-      const response = await fetch("http://localhost:5000/event/getevents", {
+      const response = await fetch("http://localhost:5000/event/organiserevents", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -24,7 +24,6 @@ function OrgDashboard() {
         throw new Error('Network response was not ok');
       }
       const events = await response.json();
-      console.log(events["msg"], events["isUser"]);
       setEvents(events["msg"]);
       setIsUser(events["isUser"]);
     } catch (error) {
@@ -41,7 +40,7 @@ function OrgDashboard() {
     <div className="App">
       <h1>Data from MongoDB</h1>
       <ul>
-        {Events.map(event => (
+        {Events && Events.map(event => (
           <li key={event._id}>
             {event.eventTitle} - {event.eventDesc}
             <img src={`http://localhost:5000${event.image}`} alt={event.eventTitle} />

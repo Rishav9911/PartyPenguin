@@ -114,7 +114,6 @@ const eventSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid phone number!`
         }
     },
-
     leadArtist: {
         type: [String]
     },
@@ -127,6 +126,10 @@ const eventSchema = new mongoose.Schema({
     image:{
       type: String,
       required:[true,"Please upload image"],
+    },
+    createdBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'organisers',
     }
 });
 

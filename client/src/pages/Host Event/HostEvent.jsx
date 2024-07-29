@@ -328,7 +328,7 @@ const HostEvent = () => {
                 <button type="submit">Submit</button>
             </form>
             {message && <p>{message}</p>}
-            {error && <p>{error}</p>}
+           
         </div>
     );
 };

@@ -1,6 +1,7 @@
 const { errorHandler } = require("../error");
 const Event = require("../models/event");
 const multer=require("multer");
+const { getUser } = require("../services/auth");
 
 
 const Storage= multer.diskStorage({
@@ -82,7 +83,11 @@ async function HandleEventDetails(req, res, next) {
       ageRestrictions,
       foodAndBeverage,
       image: imagePath,
+      createdBy:req.user._id
     });
+
+   
+
     return res
       .status(200)
       .json({ success: true, message: "Details stored successfully" });
@@ -108,12 +113,27 @@ async function HandleGetEventDetails(req,res)
 {
     const id=(req.headers['event-id'])
     const event=await Event.findById(id);
-    //console.log(event)
     return res.json(event)
 }
+
+async function HandleOrganiserEvents(req, res) {
+
+  const token=req.cookies.aid;
+  const user=getUser(token);
+  const id=user._id;
+  const event= await Event.find({createdBy:id})
+  // console.log(event);
+  
+
+  return res.json({msg: event})
+
+}
+
+
 module.exports = {
   HandleEventDetails,
   HandleGetEvents,
   HandleGetEventDetails,
+  HandleOrganiserEvents,
   upload
 };
