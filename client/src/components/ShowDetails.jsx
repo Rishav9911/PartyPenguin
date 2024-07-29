@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate} from "react-router-dom";
 import img from "./bassi.avif";
-
+import axios from 'axios'
 // Helper function to format the date
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -36,6 +36,40 @@ const ShowDetails = () => {
   useEffect(() => {
     getDetails();
   },[]);
+  const checkoutHandler = async () => {
+    console.log('in checl')
+    const amount=5000;
+    const { data: { key } } = await axios.get("http://www.localhost:5000/api/getkey").catch((err)=>{
+      console.log('jijijo',err)
+    })
+     console.log(key)
+    const { data: { order } } = await axios.post("http://localhost:5000/api/checkout", {
+        amount
+    })
+    const options = {
+        key,
+        amount: amount,
+        currency: "INR",
+        name: "Party Penguin",
+        description: "payment through RazorPay",
+        image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+        order_id: order.id,
+        callback_url: "http://localhost:4000/api/paymentverification",
+        prefill: {
+            name: "Khushi agarwal",
+            email: "example64@gmail.com",
+            contact: "9999999999"
+        },
+        notes: {
+            "address": "Razorpay Corporate Office"
+        },
+        theme: {
+            "color": "#121212"
+        }
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
+}
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 font-sans items-center">
@@ -134,7 +168,7 @@ const ShowDetails = () => {
               </ul>
             </div>
 
-            <button className="mt-8 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-black py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+            <button onClick={checkoutHandler} className="mt-8 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-black py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
               Book Tickets
             </button>
           </div>

@@ -2,7 +2,8 @@ const { getUser } = require("../services/auth");
 const { errorHandler } = require("../error");
 
 async function checkAuthentication(req, res, next) {
-  const uid = req.cookies?.uid;
+  const uid = req.cookies.uid;
+  console.log('uid',uid)
   if (!uid) {
     const aid = req.cookies?.aid;
     if (!aid) {
