@@ -9,7 +9,7 @@ export default function Homeuser() {
   const navigate=useNavigate()
   const getEvents = async () => {
     try {
-       const response = await fetch("http://localhost:5000/event/getevents", {
+      const response = await fetch("http://localhost:5000/event/getevents", {
       method: "GET",
       headers: {
         Accept: "application/json",

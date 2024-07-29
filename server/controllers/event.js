@@ -113,7 +113,6 @@ async function HandleGetEventDetails(req,res)
 {
     const id=(req.headers['event-id'])
     const event=await Event.findById(id);
-    // console.log(event)
     return res.json(event)
 }
 

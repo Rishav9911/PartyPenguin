@@ -6,35 +6,33 @@ import { toast } from "react-toastify";
 const HomeNavbar = ({ isUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const navigate=useNavigate()
-  const handleLogout= async()=>{
-        try {
-          const res=await fetch('http://localhost:5000/logout', {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-          },
-          credentials:'include'
-        }, 
-        )
-          const data= await res.json()
-          toast.success(data['msg'], {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            });
-          console.log('sucess',res)
-          navigate('/')
-        } catch (error) {
-          console.log(error)
-        }
-      
-  }
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/logout", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+        credentials: "include",
+      });
+      const data = await res.json();
+      toast.success(data["msg"], {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      console.log("sucess", res);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <nav className="bg-blue-500 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,13 +99,18 @@ const HomeNavbar = ({ isUser }) => {
                       </Link>
                     )}
 
-                    <a
-                      href="#"
+                    <Link
+                      to="/dashboard"
                       className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
                     >
-                      My Tickets
-                    </a>
-                    <button onClick={handleLogout} className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Sign Out</button>
+                      {!isUser ? "My Dashboard" : "My tickets"}
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                    >
+                      Sign Out
+                    </button>
                   </div>
                 )}
               </div>
@@ -200,13 +203,15 @@ const HomeNavbar = ({ isUser }) => {
                   Host event?
                 </Link>
               )}
-              <a
-                href="#"
+              <Link
+                to="/dashboard"
                 className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
               >
-                My Tickets
-              </a>
-              <button className="block px-4 py-2 text-gray-900 hover:bg-gray-100">Sign Out</button>
+                {!isUser ? "My Dashboard" : "My tickets"}
+              </Link>
+              <button className="block px-4 py-2 text-gray-900 hover:bg-gray-100">
+                Sign Out
+              </button>
             </div>
           </div>
         )}
